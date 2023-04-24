@@ -11,10 +11,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             List(dataList){ item in
-                HStack{
-                    emoji(model: item)
-                    Text(item.name)
-                        .font(.subheadline)
+                NavigationLink(destination: viewDetail(items: item)){
+                    HStack{
+                        emoji(model: item)
+                        Text(item.name)
+                            .font(.subheadline)
+                    }
                 }
             }.navigationTitle("List of items")
         }
@@ -36,5 +38,27 @@ struct emoji: View{
                 )
             
         }
+    }
+}
+
+
+struct viewDetail: View {
+    
+    let items: Model
+    
+    var body: some View{
+        VStack(alignment: .leading, spacing: 3, content: {
+            HStack{
+                emoji(model: items)
+                Text(items.name)
+                    .font(.largeTitle)
+                Spacer()
+            }
+            Text(items.descriptionModel)
+                .padding(.top)
+            Spacer()
+       })
+        .padding(.all)
+        .navigationBarTitle("Detail")
     }
 }
