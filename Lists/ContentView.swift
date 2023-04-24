@@ -11,14 +11,30 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             List(dataList){ item in
-                Text("\(item.name) \(item.emoji)")
+                HStack{
+                    emoji(model: item)
+                    Text(item.name)
+                        .font(.subheadline)
+                }
             }.navigationTitle("List of items")
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+struct emoji: View{
+    
+    let model: Model
+    
+    var body: some View{
+        ZStack{
+            Text(model.emoji)
+                .shadow(radius: 3)
+                .font(.largeTitle)
+                .frame(width: 65, height: 65)
+                .overlay(
+                    Circle().stroke(Color.orange, lineWidth: 3)
+                )
+            
+        }
     }
 }
