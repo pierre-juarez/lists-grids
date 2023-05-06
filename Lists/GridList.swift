@@ -14,26 +14,44 @@ struct GridList: View {
 //        GridItem(.flexible())
 //    ]
     
-    let gridItem : [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    let gridItem : [GridItem] = Array(repeating: .init(.flexible()), count: 2)
     
     var body: some View {
         NavigationView{
-//            ScrollView{
-//                LazyVGrid(columns: gridItem, spacing: 30){
-//                    ForEach(dataList){ item in
-//                        Text(item.emoji)
-//                            .font(.system(size: 80))
-//                    }
-//                }
-//            }.navigationTitle("Grids Vertical")
-            ScrollView(.horizontal){
-                LazyHGrid(rows: gridItem, spacing: 30){
+            ScrollView{
+                LazyVGrid(columns: gridItem, spacing: 30){
                     ForEach(dataList){ item in
                         Text(item.emoji)
                             .font(.system(size: 80))
                     }
                 }
-            }.navigationTitle("Grids Horizontal")
+            }.navigationTitle("Grids Vertical")
+                .toolbar{
+                    Menu("Opciones"){
+                        Section{
+                            Button("1 columna"){
+                                print("Hola1")
+                            }
+                            Button("2 columnas"){
+                                print("2 columnas")
+                            }
+                            Button("3 columnas"){
+                                print("3 columnas")
+                            }
+                            Button("4 columnas"){
+                                print("4 columnas")
+                            }
+                        }
+                    }
+                }
+//            ScrollView(.horizontal){
+//                LazyHGrid(rows: gridItem, spacing: 30){
+//                    ForEach(dataList){ item in
+//                        Text(item.emoji)
+//                            .font(.system(size: 80))
+//                    }
+//                }
+//            }.navigationTitle("Grids Horizontal")
         }
     }
 }
