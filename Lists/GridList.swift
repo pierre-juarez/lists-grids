@@ -14,12 +14,14 @@ struct GridList: View {
 //        GridItem(.flexible())
 //    ]
     
-    let gridItem : [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+//    let gridItem : [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+
+    @ObservedObject var grid = ModelColumns()
     
     var body: some View {
         NavigationView{
             ScrollView{
-                LazyVGrid(columns: gridItem, spacing: 30){
+                LazyVGrid(columns: grid.gridItem, spacing: 30){
                     ForEach(dataList){ item in
                         Text(item.emoji)
                             .font(.system(size: 80))
@@ -31,15 +33,19 @@ struct GridList: View {
                         Section{
                             Button("1 columna"){
                                 print("Hola1")
+                                grid.numberColumns(number: 1)
                             }
                             Button("2 columnas"){
                                 print("2 columnas")
+                                grid.numberColumns(number: 2)
                             }
                             Button("3 columnas"){
                                 print("3 columnas")
+                                grid.numberColumns(number: 3)
                             }
                             Button("4 columnas"){
                                 print("4 columnas")
+                                grid.numberColumns(number: 4)
                             }
                         }
                     }
