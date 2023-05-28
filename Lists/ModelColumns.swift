@@ -15,6 +15,15 @@ class ModelColumns: ObservableObject {
     
     func numberColumns(number: Int){
         gridItem = Array(repeating: .init(.flexible(maximum: 80)), count: number)
+        UserDefaults.standard.set(number, forKey: "numberUD")
+    }
+    
+    init(){
+        if let numberInit = UserDefaults.standard.object(forKey: "numberUD") as? Int{
+            gridItem = Array(repeating: .init(.flexible(maximum: 80)), count: numberInit)
+        }else{
+            gridItem = Array(repeating: .init(.flexible(maximum: 80)), count: 1)
+        }
     }
     
 }

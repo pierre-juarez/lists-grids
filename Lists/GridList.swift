@@ -47,6 +47,10 @@ struct GridList: View {
                                 print("4 columnas")
                                 grid.numberColumns(number: 4)
                             }
+                            Button("Destroy UD"){
+                                print("Destroy UD...")
+                                UserDefaults.standard.removeObject(forKey: "numberUD")
+                            }
                         }
                     }
                 }
